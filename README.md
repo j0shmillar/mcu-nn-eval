@@ -33,7 +33,7 @@ First, [download eIQ Toolkit 1.12.1 Ubuntu 20.04 Installer](https://www.nxp.com/
 Then run:
 ```bash
 docker build -t unpu-bench .  
-docker run --rm -it -v $(pwd):/workspace unpu-bench bash  
+docker run --rm -it -v $(pwd):/workspace unpu-bench  
 ```
 **⚠️ Requires Linux x86_64 (for CVI & eIQ support)**
 
