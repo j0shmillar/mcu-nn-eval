@@ -29,7 +29,7 @@ This repo includes a model compiler wrapper and deployment pipeline for a variet
 ## Setup  
 
 ### Automatic: Docker (All toolchains)  
-First, [download eIQ Toolkit 1.12.1 Ubuntu 20.04 Installer](https://www.nxp.com/design/design-center/software/eiq-ai-development-environment/eiq-toolkit-for-end-to-end-model-development-and-deployment:EIQ-TOOLKIT) and place it in current working directory.  
+First, [download eIQ Toolkit 1.12.1 Ubuntu 20.04 Installer](https://www.nxp.com/design/design-center/software/eiq-ai-development-environment/eiq-toolkit-for-end-to-end-model-development-and-deployment:EIQ-TOOLKIT) and place it in current (project root) directory.  
 Then run:
 ```bash
 docker build -t unpu-bench .  
