@@ -15,6 +15,6 @@ python3 main.py \
     --bit_width 8 \
     --avg_pool_rounding \
     --q_scale 0.85 \
-    --config_file ai8x-synthesis/networks/ai85-autoencoder.yaml \
+    --config_file "${AI8X_SYNTH_PATH}/networks/ai85-autoencoder.yaml" \
     --out_dir model/autoenc/out \
     --overwrite
