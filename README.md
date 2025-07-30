@@ -175,8 +175,9 @@ Below are additional CLI arguments specific to each target format, defined in `p
 ## Adding New Formats or Platforms
 
 ### Add Format
-Define its compiler backend: model_gen/<yourformat>.py with export(...)
-Optionally, add C codegen: code_gen.py
+Define its compiler backend: ```bash model_gen/<yourformat>.py``` with ```bash export(...)```
+
+Optionally, add C codegen: ```bash code_gen.py```
 
 ### Add to platforms.yaml
 
