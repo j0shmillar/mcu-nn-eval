@@ -73,10 +73,13 @@ COPY src/ /workspace/src/
 
 RUN git config --global --add safe.directory '*'
 
-RUN cd src && git clone --recursive https://github.com/analogdevicesinc/ai8x-training.git && \
+RUN mkdir -p /opt/ai8x && \
+    cd /opt/ai8x && \
+    git clone --recursive https://github.com/analogdevicesinc/ai8x-training.git && \
     git clone --recursive https://github.com/analogdevicesinc/ai8x-synthesis.git
 
-ENV AI8X_TRAIN_PATH=/workspace/src/ai8x-training/
+ENV AI8X_TRAIN_PATH=/opt/ai8x/ai8x-training/
+ENV AI8X_SYNTH_PATH=/opt/ai8x/ai8x-synthesis/
 
 ENV EIQ_NEUTRON_PATH=/opt/nxp/eIQ_Toolkit_v1.12.1/bin/neutron-converter/MCU_SDK_2.16.000/neutron-converter
 

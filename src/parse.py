@@ -21,7 +21,7 @@ def compile(model, model_name, model_ckpt, target_formats, target_hardware, data
     onnx_cache = {}
 
     for fmt, hw in product(target_formats, target_hardware):
-        print(f"\nCompiling for format: {fmt}, hardware: {hw}")
+        print(f"Compiling for format: {fmt}, hardware: {hw}")
 
         if fmt in {"onnx", "tflm", "vela", "eiq", "cvi"}:
             if args.bit_width not in onnx_cache:

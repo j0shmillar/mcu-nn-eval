@@ -5,10 +5,14 @@ import sys
 import numpy as np
 
 def export(model, target_hardware, data_sample, ai8x_args, args):
+    ai8x_train = os.environ.get("AI8X_TRAIN_PATH")
+    ai8x_synth = os.environ.get("AI8X_SYNTH_PATH")
+    if not ai8x_synth:
+        sys.exit("\033[91Make sure AI8X_SYNTH_PATH is set correctly.\033[0m")
     if target_hardware in ['max78000', 'max78002']:
         print("Fusing BatchNorm layers...")
         fuse_cmd = [
-            sys.executable, "ai8x-training/batchnormfuser.py",
+            sys.executable, os.path.join(ai8x_train, "batchnormfuser.py"),
             "-i", model, "-o", f"{model}_bn",
             "-oa", args.model_module_name]
         
@@ -18,7 +22,7 @@ def export(model, target_hardware, data_sample, ai8x_args, args):
         if ai8x_args['qat_policy'] is None and args.bit_width == 8:
             print("No QAT policy, bit width set to INT8 - using PTQ.")
             quantize_cmd = [
-                sys.executable, "ai8x-synthesis/quantize.py",
+                sys.executable, os.path.join(ai8x_synth, "quantize.py"),
                 f"{model}_bn", f"{model}_bn",
                 "--device", target_hardware,
                 "--scale", ai8x_args['q_scale'],
@@ -30,7 +34,7 @@ def export(model, target_hardware, data_sample, ai8x_args, args):
             if run_subproc(quantize_cmd, args.debug, "Quantization failed") is None:
                 return None
 
-        ai8xize_args = [sys.executable, "ai8x-synthesis/ai8xize.py"]
+        ai8xize_args = [sys.executable,  os.path.join(ai8x_synth, "ai8xize.py")]
         for arg, value in ai8x_args.items():
             if arg == "q_scale":
                 continue

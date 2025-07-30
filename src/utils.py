@@ -112,9 +112,9 @@ def onnx2tflm(onnx_path, args):
 
 def setup_ai8x(device_id=85, use_8bit=True):
     try:
-        ai8x_root = os.environ.get("AI8X_TRAIN_PATH")
-        if ai8x_root not in sys.path:
-            sys.path.insert(0, ai8x_root)
+        ai8x_train = os.environ.get("AI8X_TRAIN_PATH")
+        if ai8x_train not in sys.path:
+            sys.path.insert(0, ai8x_train)
         import ai8x
         ai8x.set_device(device_id, 0, use_8bit)
         return ai8x
@@ -157,7 +157,7 @@ def make_out_dir(args):
     else:
         if is_empty(out_dir):
             os.makedirs(out_dir, exist_ok=True)
-            print(f"📁 Using output directory: {out_dir}")
+            print(f"Using output directory: {out_dir}")
         else:
             base_backup = out_dir + "_backup"
             backup_dir = base_backup
@@ -168,7 +168,7 @@ def make_out_dir(args):
 
             # shutil.move(out_dir, backup_dir)
             os.makedirs(backup_dir)
-            print(f"⚠️  Output directory was not empty. Created: {backup_dir}")
+            print(f"Output directory was not empty. Created: {backup_dir}")
             out_dir = backup_dir
 
     args.out_dir = out_dir
@@ -184,8 +184,8 @@ def run_subproc(command, debug, error_msg):
             output_lines.append(line)
         process.wait()
         if process.returncode != 0:
-            # if not debug:
-            #     print(''.join(output_lines), end="") 
+            if not debug:
+                print(''.join(output_lines), end="") 
             print(f"{error_msg} (exit code {process.returncode})")
             return None
         return True
