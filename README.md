@@ -2,7 +2,7 @@
 
 ### This repo accompanies our paper, "[Benchmarking Ultra-Low-Power μNPUs](https://arxiv.org/abs/2503.22567)", accepted at [The 31st International Conference on Mobile Computing and Networking](https://www.sigmobile.org/mobicom/2025/).
 
-This repo includes a model compiler wrapper and deployment pipeline for a variety of MCU-scale neural processing units (µNPUs). It automates model export, quantization, compilation, and deployment code generation using platform-specific toolchains, all from a single Torch-based source model.
+This repo wraps model compilers/toolchains and provides a unified deployment path for a variety of MCU-scale NPUs (µNPUs). It automates model export, quantization, compilation, and deployment code generation using platform-specific toolchains, all from a single Torch-based source model.
 
 ---
 
@@ -16,16 +16,6 @@ This repo includes a model compiler wrapper and deployment pipeline for a variet
 | vela    | Ethos-U55/U65 (incl. Himax WE2)     |
 | eiq     | MCXN947 & other NXP NPUs     | 
 | cvi     | CVITEK NPUs              |
-
----
-
-## Features
-
-- Fully declarative CLI: Compiler args are defined in platforms.yaml, not hardcoded.
-- Automatically handles multi-stage dependencies. 
-- Generates device-specific source trees for deployment.
-- Automatically handles PTQ or QAT when needed.
-- Preserves builds with backups unless --overwrite.
 
 --- 
 ## Setup  
